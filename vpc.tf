@@ -1,7 +1,3 @@
-provider "aws" {
-  region = "ca-central-1"
-}
-
 resource "aws_vpc" "create_vpc" {
   cidr_block = "10.0.0.0/16"
   instance_tenancy = "default"
@@ -35,11 +31,6 @@ resource "aws_internet_gateway" "create_igw" {
     tags = {
         Name = "morel-igw"
     }
-}
-
-resource "aws_igw_attachment" "attach_igw" {
-    vpc_id = aws_vpc.create_vpc.id
-    internet_gateway_id = aws_internet_gateway.create_igw.id
 }
 
 resource "aws_route_table" "create_route_table" {
